@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { selectBook } from '../actions/index.js';
 
-export default class BookList extends React.Component {
+class BookList extends React.Component {
 	renderList() {
 		return this.props.books.map((book, index) => {
 			return (<li key={`book-${index}`} className="list-group-item"> {book.title} </li>);
@@ -15,3 +18,15 @@ export default class BookList extends React.Component {
 		)
 	}
 }
+
+function mapStateToProps(state) {
+	return {
+		books: state.books
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({ selectBook: selectBook }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookList);
