@@ -6,7 +6,12 @@ import { selectBook } from '../actions/index.js';
 class BookList extends React.Component {
 	renderList() {
 		return this.props.books.map((book, index) => {
-			return (<li key={`book-${index}`} className="list-group-item"> {book.title} </li>);
+			return (<li
+			 key={`book-${index}`}
+			 onClick={() => this.props.selectBook(book)} 
+			 className="list-group-item"> 
+			 	{book.title} 
+		</li>);
 		});
 	}
 
